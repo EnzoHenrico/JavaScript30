@@ -28,10 +28,13 @@ body{
   border: solid white;
   border-radius: 4px;
   color: white;
+  transition: all 0.07s;
 }
 
-.keyAction{
-  background-color: red;
+.keyPlaying{
+  transform: scale(1.2);
+  border-color: yellow;
+  box-shadow: 0 0 10px yellow;
 }
 
 .key button{
