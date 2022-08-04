@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <form class="search-form">
     <input type="text" class="search" placeholder="City or State">
     <ul class="suggestions">
@@ -15,8 +14,39 @@
     </ul>
   </form>
 <script>
-const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
+  const cities = [];
+  fetch(endpoint).then(res => res.json().then(json => cities.push(...json)));
 
+  const search = document.querySelector('.search');
+  const output = document.querySelector('.suggestions');
+
+  search.addEventListener('keyup', displayResults);
+
+  function findLocal(search, cities){
+    return cities.filter((local) => { 
+      const regex = new RegExp(search, 'gi');
+      return local.city.match(regex) ||local.state.match(regex)
+    })
+  }
+
+  function displayResults(){
+    const results = findLocal(this.value, cities);
+    const html = results.map((local) => {
+
+      const regex = new RegExp(this.value, 'gi');
+      const cityName = local.city.replace(regex, `<span class="hl">${this.value}</span>`);
+      const stateName = local.state.replace(regex, `<span class="hl">${this.value}</span>`);
+
+      return`
+        <li>
+          <span class="name">${cityName}, ${stateName}</span>
+          <span class="population">${local.population}</span>  
+        </li>
+      `;
+    }).join('');
+    output.innerHTML = html;
+  }
 </script>
 </body>
 </html>
