@@ -18,28 +18,59 @@
     }
 
     // Regular
-
+    console.log('Im just simple :/');
+    
     // Interpolated
+    console.log('Im a %s complex now', 'little');
 
     // Styled
+    console.log('%c Im just highlighted!', 'color: black; background-color: yellow');
 
     // warning!
+    console.warn('Just pay attention on me! ok?');
 
     // Error :|
+    console.error('You can do better!');
 
     // Info
+    console.info('I belive, the sun will rise tomorrow!');
 
     // Testing
+    console.assert(1 === 2, 'If im here, something is not true');
 
     // clearing
+    // console.clear();
 
     // Viewing DOM Elements
+    console.log(document.querySelector('p'));
+    console.dir(document.querySelector('p')); // Most detalied element log
 
     // Grouping together
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+      console.log(`My name is ${dog.name}, im ${dog.age} years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    console.count('yes');
+    console.count('no');
+    console.count('yes');
+    console.count('yes');
+    console.count('yes');
+    console.count('no');
+    console.count('yes');
+    console.count('no');
+    console.count('no');
+    console.count('yes');
+    console.count('no');
 
     // timing
+    console.time('loop time');
+      for(let i = 0; 1 <= 100000; i++){
+        i++;
+      };
+    console.timeEnd('loop ended');
 
   </script>
 </body>
