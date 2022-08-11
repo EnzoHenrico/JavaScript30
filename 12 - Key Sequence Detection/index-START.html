@@ -7,6 +7,21 @@
 </head>
 <body>
 <script>
+  window.addEventListener('keyup', easterEgg)
+  const secretkey = 'secretkey'
+  let arr = [];
+
+  function easterEgg (e) {
+    arr.push(e.key);
+    if(arr.length === secretkey.length){
+      if(arr.join('').includes(secretkey)) {
+        document.body.style.backgroundColor = "red";
+      }
+    arr.shift();
+    }
+    console.log(arr);
+  }
+
 </script>
 </body>
 </html>
